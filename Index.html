@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candy Clicker v16 — Made by Ryan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg1:#fef6fb; --bg2:#f0e9ff; --bg3:#e6f3ff;
+    --panel: #ffffff;
+    --panel-bg: rgba(255,255,255,.72);
+    --panel-border: rgba(255,255,255,.85);
+    --accent:#ff5fa2;
+    --accent-2:#a07bff;
+    --accent-dark:#b0195e;
+    --text:#1f1235;
+    --sub:#6b5b8a;
+    --card-shadow: 0 1px 2px rgba(31,18,53,.04), 0 8px 24px -8px rgba(31,18,53,.15);
+    --card-shadow-hover: 0 2px 4px rgba(31,18,53,.05), 0 20px 40px -12px rgba(160,60,150,.28);
+    --candy1:#ff7fb0; --candy2:#ff9ec6; --candy-border:#8a5fc0;
+    --left1:#ffffff; --left2:#f5edff; --left3:#e9dcff;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+  }
+
+  /* ============ THEMES ============ */
+
+  /* Candy (default pink-purple) */
+  body[data-theme="candy"] { /* uses :root */ }
+
+  /* Mint */
+  body[data-theme="mint"] {
+    --bg1:#eafff8; --bg2:#dffbe8; --bg3:#e0fbff;
+    --panel-bg: rgba(255,255,255,.72);
+    --accent:#10b98a; --accent-2:#4fd1a3; --accent-dark:#04694d;
+    --text:#0a2820; --sub:#3a6b5c;
+    --card-shadow: 0 1px 2px rgba(10,40,32,.04), 0 8px 24px -8px rgba(10,40,32,.15);
+    --card-shadow-hover: 0 2px 4px rgba(10,40,32,.05), 0 20px 40px -12px rgba(16,185,138,.3);
+    --candy1:#7be0c0; --candy2:#a8f0dc; --candy-border:#04694d;
+    --left1:#ffffff; --left2:#eafff8; --left3:#c8f5e5;
+  }
+
+  /* Galaxy (dark purple) */
+  body[data-theme="galaxy"] {
+    --bg1:#0a0620; --bg2:#1a0f3d; --bg3:#0a0620;
+    --panel-bg: rgba(30,22,55,.72);
+    --panel-border: rgba(168,127,255,.25);
+    --accent:#a87fff; --accent-2:#c07fff; --accent-dark:#c4a0ff;
+    --text:#f0e8ff; --sub:#b0a0e0;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(168,127,255,.25);
+    --card-shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 20px 40px -12px rgba(168,127,255,.5);
+    --candy1:#c07fff; --candy2:#d9a8ff; --candy-border:#3a2080;
+    --left1:#0d0728; --left2:#1a0f3d; --left3:#0d0728;
+  }
+
+  /* Sunset (warm orange) */
+  body[data-theme="sunset"] {
+    --bg1:#fff5e8; --bg2:#ffe4d0; --bg3:#ffd6c8;
+    --panel-bg: rgba(255,255,255,.72);
+    --accent:#ff6b3d; --accent-2:#ff9a55; --accent-dark:#a03010;
+    --text:#3a1808; --sub:#7a4020;
+    --card-shadow: 0 1px 2px rgba(58,24,8,.04), 0 8px 24px -8px rgba(58,24,8,.15);
+    --card-shadow-hover: 0 2px 4px rgba(58,24,8,.05), 0 20px 40px -12px rgba(255,107,61,.32);
+    --candy1:#ff9a55; --candy2:#ffbd85; --candy-border:#a03010;
+    --left1:#ffffff; --left2:#fff0e0; --left3:#ffd8b0;
+  }
+
+  /* Midnight (dark pink) */
+  body[data-theme="midnight"] {
+    --bg1:#080c1a; --bg2:#141a30; --bg3:#080c1a;
+    --panel-bg: rgba(22,28,50,.75);
+    --panel-border: rgba(255,77,141,.25);
+    --accent:#ff4d8d; --accent-2:#ff80ab; --accent-dark:#ff80ab;
+    --text:#e8ecff; --sub:#9099c0;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(255,77,141,.25);
+    --card-shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 20px 40px -12px rgba(255,77,141,.5);
+    --candy1:#ff4d8d; --candy2:#ff80ab; --candy-border:#5a1030;
+    --left1:#060a16; --left2:#0f1428; --left3:#060a16;
+  }
+
+  /* Ocean (deep blue/cyan) */
+  body[data-theme="ocean"] {
+    --bg1:#e6f7ff; --bg2:#d0ecff; --bg3:#c8e4ff;
+    --panel-bg: rgba(255,255,255,.75);
+    --accent:#0ea5e9; --accent-2:#22d3ee; --accent-dark:#075985;
+    --text:#082038; --sub:#3a5b80;
+    --card-shadow: 0 1px 2px rgba(8,32,56,.04), 0 8px 24px -8px rgba(8,32,56,.15);
+    --card-shadow-hover: 0 2px 4px rgba(8,32,56,.05), 0 20px 40px -12px rgba(14,165,233,.32);
+    --candy1:#4fc3f7; --candy2:#82e0ff; --candy-border:#075985;
+    --left1:#ffffff; --left2:#e6f7ff; --left3:#bfe4ff;
+  }
+
+  /* Forest (deep greens) */
+  body[data-theme="forest"] {
+    --bg1:#eefbf0; --bg2:#dbf5e0; --bg3:#c8ecc8;
+    --panel-bg: rgba(255,255,255,.75);
+    --accent:#16a34a; --accent-2:#4ade80; --accent-dark:#14532d;
+    --text:#0a2415; --sub:#3d6b4a;
+    --card-shadow: 0 1px 2px rgba(10,36,21,.04), 0 8px 24px -8px rgba(10,36,21,.15);
+    --card-shadow-hover: 0 2px 4px rgba(10,36,21,.05), 0 20px 40px -12px rgba(22,163,74,.3);
+    --candy1:#66d488; --candy2:#a4e8b8; --candy-border:#14532d;
+    --left1:#ffffff; --left2:#eefbf0; --left3:#c8ecc8;
+  }
+
+  /* Lavender (soft purple) */
+  body[data-theme="lavender"] {
+    --bg1:#f5f0ff; --bg2:#e8daff; --bg3:#dcc8ff;
+    --panel-bg: rgba(255,255,255,.78);
+    --accent:#8b5cf6; --accent-2:#c084fc; --accent-dark:#5b21b6;
+    --text:#2a1560; --sub:#6a5a9a;
+    --card-shadow: 0 1px 2px rgba(42,21,96,.04), 0 8px 24px -8px rgba(42,21,96,.15);
+    --card-shadow-hover: 0 2px 4px rgba(42,21,96,.05), 0 20px 40px -12px rgba(139,92,246,.32);
+    --candy1:#a78bfa; --candy2:#d8b4fe; --candy-border:#5b21b6;
+    --left1:#ffffff; --left2:#f5f0ff; --left3:#dcc8ff;
+  }
+
+  /* Cherry (bright red-pink) */
+  body[data-theme="cherry"] {
+    --bg1:#fff0f2; --bg2:#ffd9df; --bg3:#ffc0cb;
+    --panel-bg: rgba(255,255,255,.78);
+    --accent:#e11d48; --accent-2:#fb7185; --accent-dark:#881337;
+    --text:#3a0817; --sub:#7a2a44;
+    --card-shadow: 0 1px 2px rgba(58,8,23,.04), 0 8px 24px -8px rgba(58,8,23,.15);
+    --card-shadow-hover: 0 2px 4px rgba(58,8,23,.05), 0 20px 40px -12px rgba(225,29,72,.32);
+    --candy1:#fb7185; --candy2:#ff9aab; --candy-border:#881337;
+    --left1:#ffffff; --left2:#fff0f2; --left3:#ffc0cb;
+  }
+
+  /* Gold (luxurious) */
+  body[data-theme="gold"] {
+    --bg1:#fffbeb; --bg2:#fef3c7; --bg3:#fde68a;
+    --panel-bg: rgba(255,255,255,.82);
+    --accent:#d97706; --accent-2:#fbbf24; --accent-dark:#78350f;
+    --text:#3a2000; --sub:#7a5520;
+    --card-shadow: 0 1px 2px rgba(58,32,0,.04), 0 8px 24px -8px rgba(58,32,0,.15);
+    --card-shadow-hover: 0 2px 4px rgba(58,32,0,.05), 0 20px 40px -12px rgba(217,119,6,.32);
+    --candy1:#fbbf24; --candy2:#fcd34d; --candy-border:#78350f;
+    --left1:#ffffff; --left2:#fffbeb; --left3:#fde68a;
+  }
+
+  /* Neon (cyberpunk - bright pink/cyan on dark) */
+  body[data-theme="neon"] {
+    --bg1:#0a0a12; --bg2:#14121f; --bg3:#0a0a12;
+    --panel-bg: rgba(20,18,32,.78);
+    --panel-border: rgba(0,255,255,.22);
+    --accent:#ff00aa; --accent-2:#00ffe0; --accent-dark:#00ffe0;
+    --text:#f0f0ff; --sub:#a0a0c8;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 8px 24px -8px rgba(255,0,170,.35);
+    --card-shadow-hover: 0 2px 4px rgba(0,0,0,.5), 0 20px 40px -12px rgba(255,0,170,.6);
+    --candy1:#ff00aa; --candy2:#ff66cc; --candy-border:#00ffe0;
+    --left1:#0a0512; --left2:#14121f; --left3:#0a0512;
+  }
+
+  /* Mono (grayscale - sleek) */
+  body[data-theme="mono"] {
+    --bg1:#fafafa; --bg2:#f0f0f0; --bg3:#e5e5e5;
+    --panel-bg: rgba(255,255,255,.82);
+    --panel-border: rgba(0,0,0,.08);
+    --accent:#171717; --accent-2:#525252; --accent-dark:#000000;
+    --text:#0a0a0a; --sub:#525252;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -8px rgba(0,0,0,.15);
+    --card-shadow-hover: 0 2px 4px rgba(0,0,0,.05), 0 20px 40px -12px rgba(0,0,0,.25);
+    --candy1:#a3a3a3; --candy2:#d4d4d4; --candy-border:#171717;
+    --left1:#ffffff; --left2:#fafafa; --left3:#e5e5e5;
+  }
+
+  /* Strawberry Milkshake (soft pastel) */
+  body[data-theme="milkshake"] {
+    --bg1:#fff0f6; --bg2:#ffe0ec; --bg3:#ffd0e0;
+    --panel-bg: rgba(255,255,255,.8);
+    --accent:#f472b6; --accent-2:#fbcfe8; --accent-dark:#9d174d;
+    --text:#4a0e2e; --sub:#9a5a7a;
+    --card-shadow: 0 1px 2px rgba(74,14,46,.04), 0 8px 24px -8px rgba(74,14,46,.12);
+    --card-shadow-hover: 0 2px 4px rgba(74,14,46,.05), 0 20px 40px -12px rgba(244,114,182,.3);
+    --candy1:#f9a8d4; --candy2:#fbcfe8; --candy-border:#9d174d;
+    --left1:#ffffff; --left2:#fff0f6; --left3:#ffd0e0;
+  }
+
+  /* ============ BASE LAYOUT ============ */
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    background: linear-gradient(140deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background .5s ease, color .35s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 24px 90px;
+    position: relative;
+    min-height: 100vh;
+  }
+  #left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 45%, rgba(255,127,176,.22), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 60%, rgba(160,123,255,.18), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--panel-border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sub);
+    box-shadow: var(--card-shadow);
+  }
+  .pill strong { color: var(--text); font-weight: 700; }
+
+  #credit { position: absolute; top: 16px; left: 20px; z-index: 5; }
+
+  #player-name-display {
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 5;
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    font-weight: 700;
+    padding: 6px 16px;
+  }
+
+  #startup-banner {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 6;
+    font-size: 12px; font-weight: 600;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 100px;
+    box-shadow: 0 6px 20px -4px rgba(34,197,94,.55);
+  }
+  #startup-banner.error { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 6px 20px -4px rgba(239,68,68,.55); }
+
+  #candy-count {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--text) 20%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+    position: relative; z-index: 2;
+    line-height: 1.05;
+    text-align: center;
+  }
+  #cps {
+    font-size: 14px; font-weight: 600;
+    color: var(--accent-dark);
+    letter-spacing: .02em;
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 6px;
+  }
+  #cps::before { content: '📈'; font-size: 14px; }
+  #debug-hint {
+    font-size: 12px; color: var(--sub);
+    margin-bottom: 14px; position: relative; z-index: 2;
+    font-style: italic; text-align: center;
+    min-height: 1em; max-width: 90%; opacity: .85;
+  }
+  #click-value {
+    font-size: 13px; color: var(--sub); font-weight: 500;
+    margin-bottom: 4px; position: relative; z-index: 2;
+  }
+  #click-value strong { color: var(--accent-dark); font-weight: 700; }
+  #active-bonus {
+    font-size: 12px; color: var(--accent-dark);
+    margin-bottom: 20px; font-weight: 600;
+    text-align: center; min-height: 1.2em;
+    position: relative; z-index: 2;
+  }
+
+  #candy-wrap {
+    position: relative; width: 280px; height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    user-select: none; z-index: 2;
+  }
+  #candy-wrap::before {
+    content: '';
+    position: absolute; inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,127,176,.4) 0%, rgba(160,123,255,.15) 45%, transparent 70%);
+    filter: blur(20px);
+    animation: haloPulse 3s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes haloPulse {
+    0%, 100% { transform: scale(1); opacity: .8; }
+    50%      { transform: scale(1.08); opacity: 1; }
+  }
+
+  #candy {
+    width: 240px; height: 240px; border-radius: 50%;
+    cursor: pointer; position: relative; z-index: 2;
+    background: repeating-linear-gradient(135deg,
+        var(--candy1) 0px, var(--candy1) 26px,
+        var(--candy2) 26px, var(--candy2) 52px);
+    border: none;
+    box-shadow:
+      0 25px 50px -12px rgba(138,95,192,.55),
+      0 0 0 8px rgba(255,255,255,.35),
+      inset -26px -26px 50px rgba(0,0,0,.25),
+      inset 18px 18px 40px rgba(255,255,255,.45);
+    transition: transform .08s cubic-bezier(.34,1.56,.64,1), box-shadow .15s;
+    overflow: hidden;
+  }
+  #candy::before {
+    content: ''; position: absolute; top: 6%; left: 10%;
+    width: 120px; height: 80px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.95), rgba(255,255,255,0) 70%);
+    filter: blur(3px); pointer-events: none;
+  }
+  #candy::after {
+    content: ''; position: absolute; bottom: 14%; right: 18%;
+    width: 40px; height: 30px; border-radius: 50%;
+    background: rgba(255,255,255,.55); filter: blur(4px); pointer-events: none;
+  }
+  #candy:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 32px 60px -14px rgba(138,95,192,.7),
+      0 0 0 8px rgba(255,255,255,.4),
+      inset -26px -26px 50px rgba(0,0,0,.25),
+      inset 18px 18px 40px rgba(255,255,255,.45);
+  }
+  #candy:active { transform: scale(.94); }
+  #candy.bounce { animation: bounce .3s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(.9); }
+    100% { transform: scale(1); }
+  }
+
+  .float {
+    position: absolute; pointer-events: none; font-weight: 800;
+    font-size: 20px; letter-spacing: -.02em; color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,.4), 0 0 12px rgba(255,107,157,.8);
+    animation: floatUp 1.1s cubic-bezier(.22,1,.36,1) forwards;
+    z-index: 9999;
+  }
+  @keyframes floatUp {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-90px) scale(1.15); }
+  }
+
+  #right {
+    width: 460px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 100vh;
+    border-left: 1px solid var(--panel-border);
+    transition: background .4s, border-color .4s;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+  }
+  #right::-webkit-scrollbar { width: 8px; }
+  #right::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent), var(--accent-2));
+    border-radius: 4px;
+  }
+  #right::-webkit-scrollbar-track { background: transparent; }
+
+  .section-title {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--sub);
+    margin: 24px 0 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title:first-child { margin-top: 0; }
+  .section-title::before {
+    content: ''; width: 3px; height: 14px;
+    background: linear-gradient(var(--accent), var(--accent-2));
+    border-radius: 2px;
+  }
+
+  .item {
+    display: flex; align-items: flex-start;
+    background: var(--panel);
+    border-radius: var(--radius-md);
+    padding: 14px; margin-bottom: 10px;
+    cursor: pointer; width: 100%;
+    font-family: inherit; font-size: 1em; text-align: left;
+    color: var(--text);
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .18s, border-color .18s, background .3s;
+    box-shadow: var(--card-shadow);
+    border: 1.5px solid transparent;
+    position: relative; z-index: 1; overflow: hidden;
+  }
+  body[data-theme="galaxy"] .item,
+  body[data-theme="midnight"] .item,
+  body[data-theme="neon"] .item {
+    background: rgba(255,255,255,.05);
+    border-color: rgba(255,255,255,.06);
+  }
+  .item:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+  .item:active { transform: translateY(-1px) scale(.99); }
+  .item.affordable {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(255,95,162,.14), var(--card-shadow);
+  }
+  .item.affordable::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 3px;
+    background: linear-gradient(var(--accent), var(--accent-2));
+    border-radius: 0 3px 3px 0;
+  }
+
+  .item .icon {
+    font-size: 28px;
+    margin-right: 14px;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, rgba(255,95,162,.12), rgba(160,123,255,.12));
+    border: 1px solid rgba(255,255,255,.5);
+  }
+  body[data-theme="galaxy"] .item .icon,
+  body[data-theme="midnight"] .item .icon,
+  body[data-theme="neon"] .item .icon {
+    background: linear-gradient(135deg, rgba(168,127,255,.15), rgba(192,127,255,.15));
+    border-color: rgba(168,127,255,.2);
+  }
+  .item .info { flex: 1; min-width: 0; }
+  .item .name {
+    font-weight: 700; font-size: 15px;
+    letter-spacing: -.01em;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 3px;
+  }
+  .item .owned {
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-dark);
+    background: rgba(255,95,162,.14);
+    padding: 2px 8px; border-radius: 100px;
+    letter-spacing: 0;
+  }
+  body[data-theme="galaxy"] .item .owned,
+  body[data-theme="midnight"] .item .owned,
+  body[data-theme="neon"] .item .owned {
+    background: rgba(168,127,255,.2);
+    color: var(--accent-2);
+  }
+  .item .cost {
+    font-size: 13px; font-weight: 600;
+    color: var(--accent-dark); margin-top: 3px;
+  }
+  .item .cps-each {
+    font-size: 11.5px; color: var(--sub);
+    margin-top: 3px; font-weight: 500;
+  }
+  .item .bonus {
+    font-size: 11px; color: var(--sub);
+    margin-top: 6px;
+    background: rgba(160,123,255,.08);
+    border-left: 2.5px solid var(--accent-2);
+    padding: 5px 9px; border-radius: 6px;
+    font-weight: 500; line-height: 1.35;
+  }
+  body[data-theme="galaxy"] .item .bonus,
+  body[data-theme="midnight"] .item .bonus,
+  body[data-theme="neon"] .item .bonus {
+    background: rgba(168,127,255,.12);
+  }
+
+  #upgrades { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .upgrade {
+    background: var(--panel);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 12px;
+    font-size: 12.5px; cursor: pointer; text-align: left;
+    line-height: 1.4; color: var(--text); font-family: inherit;
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .18s, border-color .18s, background .3s;
+    box-shadow: var(--card-shadow);
+    position: relative; overflow: hidden;
+  }
+  body[data-theme="galaxy"] .upgrade,
+  body[data-theme="midnight"] .upgrade,
+  body[data-theme="neon"] .upgrade {
+    background: rgba(255,255,255,.05);
+    border-color: rgba(255,255,255,.06);
+  }
+  .upgrade:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
+  .upgrade:active { transform: scale(.98); }
+  .upgrade strong {
+    display: block; margin-bottom: 4px;
+    color: var(--accent-dark); font-size: 13px;
+    font-weight: 700; letter-spacing: -.01em;
+  }
+  body[data-theme="galaxy"] .upgrade strong,
+  body[data-theme="midnight"] .upgrade strong,
+  body[data-theme="neon"] .upgrade strong {
+    color: var(--accent-2);
+  }
+  .upgrade .effect { color: var(--sub); font-weight: 500; font-size: 11.5px; }
+  .upgrade .ucost {
+    display: inline-block; margin-top: 6px;
+    font-weight: 700; color: var(--accent-dark); font-size: 12px;
+  }
+  body[data-theme="galaxy"] .upgrade .ucost,
+  body[data-theme="midnight"] .upgrade .ucost,
+  body[data-theme="neon"] .upgrade .ucost {
+    color: var(--accent-2);
+  }
+  .upgrade.locked {
+    opacity: .45; cursor: not-allowed;
+    background: rgba(150,150,150,.1);
+  }
+  .upgrade.locked:hover { transform: none; box-shadow: var(--card-shadow); }
+
+  #stats {
+    font-size: 13px; color: var(--sub);
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    line-height: 1.9;
+    box-shadow: var(--card-shadow);
+  }
+  #stats div { display: flex; justify-content: space-between; gap: 12px; }
+  #stats strong { color: var(--text); font-weight: 600; }
+
+  #settings-toggle, #hack-toggle {
+    position: fixed; top: 16px; z-index: 1001;
+    cursor: pointer; border: none; font-family: inherit;
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1),
+                box-shadow .2s, opacity .25s ease;
+  }
+  #settings-toggle {
+    right: 16px; width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px -4px rgba(255,95,162,.55);
+  }
+  #settings-toggle:hover {
+    transform: rotate(45deg) scale(1.08);
+    box-shadow: 0 10px 28px -4px rgba(255,95,162,.7);
+  }
+  #settings-toggle:active { transform: rotate(45deg) scale(.95); }
+
+  .hidden-while-open {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: scale(.3) !important;
+  }
+
+  #hack-toggle {
+    right: 68px;
+    background: #0a0a0a; color: #00ff88;
+    border: 2px solid #00ff88;
+    border-radius: 12px; padding: 10px 16px;
+    font-size: 13px; font-weight: 800;
+    font-family: 'SF Mono', 'Consolas', monospace;
+    letter-spacing: .05em;
+    display: none;
+    box-shadow: 0 0 24px rgba(0,255,136,.5);
+  }
+  #hack-toggle.show { display: block; animation: hackPulse 1.5s infinite alternate; }
+  @keyframes hackPulse {
+    from { box-shadow: 0 0 12px rgba(0,255,136,.4); }
+    to   { box-shadow: 0 0 32px rgba(0,255,136,.9); }
+  }
+
+  #settings-panel, #hack-panel {
+    position: fixed; top: 16px; right: 16px; bottom: 16px;
+    width: 400px; max-width: calc(100vw - 32px);
+    background: var(--panel-bg);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--panel-border);
+    box-shadow: 0 20px 60px -12px rgba(31,18,53,.35);
+    z-index: 1000; padding: 24px;
+    overflow-y: auto;
+    transition: transform .4s cubic-bezier(.34,1.4,.64,1), opacity .3s, background .4s;
+    transform: translateX(calc(100% + 40px));
+    opacity: 0; pointer-events: none;
+  }
+  #settings-panel.open, #hack-panel.open {
+    transform: translateX(0); opacity: 1; pointer-events: auto;
+  }
+  #hack-panel {
+    background: rgba(8,14,10,.94);
+    border-color: rgba(0,255,136,.35);
+    color: #00ff88;
+    font-family: 'SF Mono', 'Consolas', monospace;
+    box-shadow: 0 20px 60px -12px rgba(0,255,136,.35), 0 0 0 1px rgba(0,255,136,.2);
+  }
+
+  .panel-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  #hack-panel .panel-header { border-bottom-color: rgba(0,255,136,.25); }
+  .panel-header h2 {
+    font-size: 20px; font-weight: 800;
+    letter-spacing: -.02em; color: var(--text);
+  }
+  #hack-panel .panel-header h2 {
+    color: #00ff88;
+    text-shadow: 0 0 12px rgba(0,255,136,.6);
+    font-size: 18px;
+  }
+  .close-x {
+    cursor: pointer; font-size: 16px; line-height: 1;
+    color: var(--sub); background: rgba(0,0,0,.05);
+    border-radius: 50%; width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    border: none;
+    transition: background .15s, transform .15s, color .15s;
+    font-family: inherit;
+  }
+  .close-x:hover {
+    background: rgba(255,95,162,.18);
+    color: var(--accent-dark);
+    transform: scale(1.08);
+  }
+  .close-x:active { transform: scale(.92); }
+  #hack-panel .close-x { color: #00ff88; background: rgba(0,255,136,.1); }
+  #hack-panel .close-x:hover { background: rgba(0,255,136,.25); }
+
+  .panel-section-title {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--sub); margin: 22px 0 10px;
+  }
+  #hack-panel .panel-section-title { color: #00ff88; opacity: .8; }
+
+  /* Theme grid — now 3 columns to fit more themes */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .theme-btn {
+    padding: 12px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.4);
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1), border-color .15s, box-shadow .15s;
+    font-family: inherit;
+    letter-spacing: .02em;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-btn::after {
+    content: '✓';
+    position: absolute;
+    top: 4px; right: 6px;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .theme-btn.active::after { opacity: 1; }
+  .theme-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px -6px rgba(0,0,0,.4); }
+  .theme-btn.active {
+    border-color: rgba(255,255,255,.9);
+    box-shadow: 0 0 0 2px var(--accent), 0 8px 20px -6px rgba(0,0,0,.4);
+  }
+
+  #t-candy     { background: linear-gradient(135deg,#ff9a9e,#fbc2eb); }
+  #t-mint      { background: linear-gradient(135deg,#a8edea,#96e6a1); }
+  #t-galaxy    { background: linear-gradient(135deg,#2b1055,#7597de); }
+  #t-sunset    { background: linear-gradient(135deg,#ff7e5f,#ffd194); }
+  #t-midnight  { background: linear-gradient(135deg,#0f0c29,#302b63); }
+  #t-ocean     { background: linear-gradient(135deg,#0ea5e9,#22d3ee); }
+  #t-forest    { background: linear-gradient(135deg,#16a34a,#4ade80); }
+  #t-lavender  { background: linear-gradient(135deg,#8b5cf6,#c084fc); }
+  #t-cherry    { background: linear-gradient(135deg,#e11d48,#fb7185); }
+  #t-gold      { background: linear-gradient(135deg,#d97706,#fbbf24); color:#3a2000; text-shadow:none; }
+  #t-neon      { background: linear-gradient(135deg,#ff00aa,#00ffe0); }
+  #t-mono      { background: linear-gradient(135deg,#404040,#a3a3a3); }
+  #t-milkshake { background: linear-gradient(135deg,#f9a8d4,#fbcfe8); color:#4a0e2e; text-shadow:none; }
+
+  .settings-btn {
+    display: block; width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent-dark);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13.5px; font-weight: 700;
+    margin-top: 8px;
+    transition: background .15s, transform .15s, box-shadow .15s, color .15s, border-color .15s;
+    font-family: inherit;
+    letter-spacing: .01em;
+  }
+  .settings-btn:hover {
+    background: rgba(255,95,162,.12);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -6px rgba(255,95,162,.5);
+  }
+  .settings-btn:active { transform: translateY(0) scale(.98); }
+  .settings-btn.danger { border-color: #e11d48; color: #e11d48; }
+  .settings-btn.danger:hover {
+    background: rgba(225,29,72,.12);
+    box-shadow: 0 6px 16px -6px rgba(225,29,72,.5);
+  }
+  .settings-btn.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px -6px rgba(255,95,162,.55);
+  }
+  .settings-btn.primary:hover {
+    box-shadow: 0 10px 26px -6px rgba(255,95,162,.75);
+    transform: translateY(-2px);
+  }
+
+  #name-input {
+    width: 100%; padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--panel-border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    transition: border-color .15s, box-shadow .15s;
+    outline: none;
+  }
+  #name-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(255,95,162,.15);
+  }
+
+  .made-by {
+    margin-top: 32px; padding-top: 20px;
+    border-top: 1px solid var(--panel-border);
+    text-align: center;
+    font-size: 12.5px; color: var(--sub);
+  }
+  .made-by strong { color: var(--accent-dark); font-weight: 700; }
+  #hack-panel .made-by {
+    border-top-color: rgba(0,255,136,.25);
+    color: #00ff88; opacity: .7;
+  }
+
+  .hack-btn {
+    display: block; width: 100%;
+    padding: 12px 14px;
+    background: rgba(0,255,136,.06);
+    color: #00ff88;
+    border: 1.5px solid rgba(0,255,136,.4);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-weight: 700; font-size: 13px;
+    cursor: pointer; margin-top: 8px;
+    transition: background .15s, box-shadow .15s, transform .15s, border-color .15s;
+    letter-spacing: .02em;
+  }
+  .hack-btn:hover {
+    background: rgba(0,255,136,.15);
+    border-color: #00ff88;
+    box-shadow: 0 0 16px rgba(0,255,136,.4);
+    transform: translateY(-1px);
+  }
+  .hack-btn:active { transform: translateY(0) scale(.98); }
+  .hack-btn.danger {
+    border-color: rgba(255,77,77,.5);
+    color: #ff6666;
+    background: rgba(255,77,77,.06);
+  }
+  .hack-btn.danger:hover {
+    background: rgba(255,77,77,.15);
+    border-color: #ff6666;
+    box-shadow: 0 0 16px rgba(255,77,77,.4);
+  }
+  .hack-row { display: flex; gap: 8px; margin-top: 8px; }
+  .hack-row input {
+    flex: 1; padding: 12px 14px;
+    background: rgba(0,255,136,.06);
+    color: #00ff88;
+    border: 1.5px solid rgba(0,255,136,.4);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 13px; font-weight: 600;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .hack-row input:focus {
+    border-color: #00ff88;
+    box-shadow: 0 0 0 3px rgba(0,255,136,.2);
+  }
+  .hack-row .hack-btn { margin-top: 0; flex: 1; }
+  #hack-status {
+    margin-top: 14px; padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(0,255,136,.06);
+    border: 1px dashed rgba(0,255,136,.4);
+    color: #00ff88;
+    font-size: 12px; line-height: 1.6; font-weight: 500;
+  }
+
+  #golden {
+    position: fixed; width: 68px; height: 68px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff9c4 0%, #ffd700 40%, #ff8c00 100%);
+    box-shadow:
+      0 0 40px #ffd700,
+      0 0 80px rgba(255,215,0,.6),
+      0 0 0 4px rgba(255,255,255,.5);
+    cursor: pointer; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    animation: goldenPulse .6s ease-in-out infinite alternate;
+    user-select: none;
+    transition: transform .15s;
+  }
+  #golden:hover { transform: scale(1.1); }
+  @keyframes goldenPulse {
+    from { transform: scale(1); box-shadow: 0 0 30px #ffd700, 0 0 60px rgba(255,215,0,.5), 0 0 0 4px rgba(255,255,255,.5); }
+    to   { transform: scale(1.1); box-shadow: 0 0 50px #ffd700, 0 0 90px rgba(255,215,0,.8), 0 0 0 8px rgba(255,255,255,.3); }
+  }
+
+  #toast {
+    position: fixed; bottom: 90px; left: 50%;
+    transform: translate(-50%, 20px);
+    background: rgba(20,12,35,.92);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-size: 13.5px; font-weight: 600;
+    z-index: 2000;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s, transform .25s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 12px 32px -8px rgba(0,0,0,.5);
+    max-width: 80vw; text-align: center;
+    letter-spacing: -.01em;
+  }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  #news {
+    position: fixed; bottom: 0; left: 0; right: 460px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    padding: 10px 20px;
+    font-size: 12.5px; font-style: italic;
+    color: var(--sub);
+    border-top: 1px solid var(--panel-border);
+    transition: background .4s, border-color .4s;
+    font-weight: 500; letter-spacing: .01em;
+    z-index: 100;
+  }
+
+  .buff-bar {
+    position: fixed; top: 16px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 8px;
+    z-index: 900; flex-wrap: wrap; justify-content: center;
+    max-width: 60vw; margin-top: 44px;
+  }
+  .buff {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .02em;
+    box-shadow: 0 6px 18px -4px rgba(255,95,162,.6);
+    animation: buffPop .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes buffPop {
+    0% { transform: scale(.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @media (max-width: 900px) {
+    body { flex-direction: column; }
+    #right {
+      width: 100%; max-height: none;
+      border-left: none;
+      border-top: 1px solid var(--panel-border);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      margin-top: -20px;
+    }
+    #news { right: 0; }
+    #candy-wrap { width: 220px; height: 220px; }
+    #candy { width: 190px; height: 190px; }
+    #settings-panel, #hack-panel { width: calc(100vw - 32px); right: 16px; }
+    #upgrades { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    #left { padding: 20px 16px 80px; }
+    #candy-count { font-size: 34px; }
+    #credit { font-size: 11px; padding: 4px 10px; }
+    #player-name-display { font-size: 12px; padding: 4px 12px; }
+    .theme-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body data-theme="candy">
+
+<div id="left">
+  <div id="credit" class="pill">🍬 <strong>Candy Clicker</strong> · by Ryan</div>
+  <div id="player-name-display" class="pill">Player</div>
+
+  <div id="candy-count">0 candies</div>
+  <div id="cps">per second: 0</div>
+  <div id="debug-hint"></div>
+  <div id="click-value">+<strong>1</strong> per click</div>
+  <div id="active-bonus"></div>
+  <div id="candy-wrap"><div id="candy"></div></div>
+
+  <div id="startup-banner">Loading...</div>
+</div>
+
+<div id="right">
+  <div class="section-title">🍬 Upgrades</div>
+  <div id="upgrades"></div>
+  <div class="section-title">🏭 Buildings</div>
+  <div id="buildings"></div>
+  <div class="section-title">📊 Stats</div>
+  <div id="stats"></div>
+</div>
+
+<div id="news"></div>
+<div class="buff-bar" id="buffBar"></div>
+<div id="toast"></div>
+
+<button id="hack-toggle">💀 HACK</button>
+<button id="settings-toggle" title="Settings">⚙</button>
+
+<div id="settings-panel">
+  <div class="panel-header">
+    <h2>⚙ Settings</h2>
+    <button class="close-x" id="settings-close" title="Close settings">✕</button>
+  </div>
+
+  <div class="panel-section-title">👤 Your Name</div>
+  <input type="text" id="name-input" placeholder="Enter your name..." maxlength="24" />
+  <button class="settings-btn" id="name-save">Save Name</button>
+
+  <div class="panel-section-title">🎨 Theme</div>
+  <div class="theme-grid">
+    <div class="theme-btn active" id="t-candy"     data-theme="candy">Candy</div>
+    <div class="theme-btn"        id="t-mint"      data-theme="mint">Mint</div>
+    <div class="theme-btn"        id="t-lavender"  data-theme="lavender">Lavender</div>
+    <div class="theme-btn"        id="t-cherry"    data-theme="cherry">Cherry</div>
+    <div class="theme-btn"        id="t-milkshake" data-theme="milkshake">Milkshake</div>
+    <div class="theme-btn"        id="t-ocean"     data-theme="ocean">Ocean</div>
+    <div class="theme-btn"        id="t-forest"    data-theme="forest">Forest</div>
+    <div class="theme-btn"        id="t-sunset"    data-theme="sunset">Sunset</div>
+    <div class="theme-btn"        id="t-gold"      data-theme="gold">Gold</div>
+    <div class="theme-btn"        id="t-galaxy"    data-theme="galaxy">Galaxy</div>
+    <div class="theme-btn"        id="t-midnight"  data-theme="midnight">Midnight</div>
+    <div class="theme-btn"        id="t-neon"      data-theme="neon">Neon</div>
+    <div class="theme-btn"        id="t-mono"      data-theme="mono">Mono</div>
+  </div>
+
+  <div class="panel-section-title">💾 Save</div>
+  <button class="settings-btn" id="save-now">Save Now</button>
+
+  <div class="panel-section-title">⚠️ Danger Zone</div>
+  <button class="settings-btn danger" id="reset-all">Reset Everything</button>
+
+  <button class="settings-btn primary" id="settings-close-bottom" style="margin-top: 20px;">← Close Settings</button>
+
+  <div class="made-by">Made by <strong>Ryan</strong> · Candy Clicker v16</div>
+</div>
+
+<div id="hack-panel">
+  <div class="panel-header">
+    <h2>💀 HACK MENU</h2>
+    <button class="close-x" id="hack-close" title="Close">✕</button>
+  </div>
+  <div style="font-size:11px;opacity:.7;margin-bottom:6px;">Logged in as candyhacker3000</div>
+
+  <div class="panel-section-title">💰 Candy</div>
+  <div class="hack-row">
+    <input type="number" id="hack-amount" value="1000000" min="1" />
+    <button class="hack-btn" id="hack-add-btn">+ Add</button>
+  </div>
+  <button class="hack-btn" id="hack-set-btn">Set Candies to Amount</button>
+  <button class="hack-btn" id="hack-quad-btn">+1 Quadrillion</button>
+
+  <div class="panel-section-title">🏭 Buildings</div>
+  <button class="hack-btn" id="hack-b10">Give 10 of Each</button>
+  <button class="hack-btn" id="hack-b100">Give 100 of Each</button>
+  <button class="hack-btn" id="hack-b1000">Give 1000 of Each</button>
+  <button class="hack-btn danger" id="hack-b0">Remove All Buildings</button>
+
+  <div class="panel-section-title">⬆️ Upgrades</div>
+  <button class="hack-btn" id="hack-up-all">Unlock ALL Upgrades</button>
+  <button class="hack-btn" id="hack-up-reset">Reset All Upgrades</button>
+
+  <div class="panel-section-title">⚡ Effects</div>
+  <button class="hack-btn" id="hack-frenzy">Trigger Golden Frenzy (x7 CPS 30s)</button>
+  <button class="hack-btn" id="hack-cp1k">+1000 Click Power</button>
+  <button class="hack-btn" id="hack-cp1m">+1,000,000 Click Power</button>
+  <button class="hack-btn" id="hack-rain">Spawn 10 Golden Candies</button>
+
+  <div class="panel-section-title">🔓 Bypass</div>
+  <button class="hack-btn" id="hack-bypass-btn">Toggle Free Purchases: OFF</button>
+
+  <div class="panel-section-title">⚠️ Danger</div>
+  <button class="hack-btn danger" id="hack-wipe">Wipe Everything (No Reload)</button>
+
+  <div id="hack-status">Ready.</div>
+</div>
+
+<script>
+/* ============================================================
+   CANDY CLICKER v16 — 13 themes
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function setBanner(text, isError) {
+    var b = document.getElementById('startup-banner');
+    if (b) { b.textContent = text; b.className = isError ? 'error' : ''; }
+  }
+  setBanner('Loading...');
+
+  try {
+    console.log('Candy Clicker v16 starting...');
+
+    var memoryStore = {};
+    var storage = {
+      getItem: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return memoryStore[k] || null; } },
+      setItem: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { memoryStore[k] = String(v); } },
+      removeItem: function (k) { try { window.localStorage.removeItem(k); } catch (e) { delete memoryStore[k]; } }
+    };
+    var SAVE_VERSION = 'candyClicker_v16';
+    var LAST_SEEN = 'candyClicker_lastVersion';
+    try {
+      if (storage.getItem(LAST_SEEN) !== SAVE_VERSION) {
+        ['candyClicker_v15','candyClicker_v14','candyClicker_v13','candyClicker_v12','candyClicker_v11',
+         'candyClicker_v10','candyClicker_v9','candyClicker_v8','candyClicker_v7','candyClicker_v6',
+         'candyClicker_v5','candyClicker_v4','candyClicker_v3','candyClickerSave_v4','candyClickerSave_v3',
+         'candyClickerSave_v2','candyClickerSave'
+        ].forEach(function (k) { storage.removeItem(k); });
+        storage.setItem(LAST_SEEN, SAVE_VERSION);
+      }
+    } catch (e) {}
+
+    var state = {
+      candies: 0, totalCandies: 0, clicks: 0, clickPower: 1, cps: 0,
+      goldenClicks: 0, startTime: Date.now(), buffs: [],
+      playerName: 'Player', bypassPurchases: false,
+      building: [
+        { id:'cursor',    name:'Sugar Finger',    icon:'👆', baseCost:15,      baseCps:1,     owned:0, bonusDesc:'+1% click power per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('cursor').owned/10) * 0.01; } },
+        { id:'grandma',   name:'Candy Granny',    icon:'👵', baseCost:100,     baseCps:5,     owned:0, bonusDesc:'Golden candy spawns +5% faster per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('grandma').owned/10) * 0.05; } },
+        { id:'farm',      name:'Sugar Farm',      icon:'🌾', baseCost:1100,    baseCps:20,    owned:0, bonusDesc:'+2% CPS per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('farm').owned/10) * 0.02; } },
+        { id:'mine',      name:'Gumdrop Mine',    icon:'⛏️', baseCost:12000,   baseCps:100,   owned:0, bonusDesc:'+5% click power per 25 owned',
+          bonus:function() { return Math.floor(getBuilding('mine').owned/25) * 0.05; } },
+        { id:'factory',   name:'Candy Factory',   icon:'🏭', baseCost:130000,  baseCps:500,   owned:0, bonusDesc:'+3% CPS per 25 owned',
+          bonus:function() { return Math.floor(getBuilding('factory').owned/25) * 0.03; } },
+        { id:'bank',      name:'Sugar Bank',      icon:'🏦', baseCost:1.4e6,   baseCps:1400,  owned:0, bonusDesc:'+10% offline earnings per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('bank').owned/10) * 0.10; } },
+        { id:'temple',    name:'Temple of Sweets',icon:'🛕', baseCost:2e7,     baseCps:7800,  owned:0, bonusDesc:'+4% CPS per 25 owned',
+          bonus:function() { return Math.floor(getBuilding('temple').owned/25) * 0.04; } },
+        { id:'wizard',    name:'Wizard Tower',    icon:'🧙', baseCost:3.3e8,   baseCps:44000, owned:0, bonusDesc:'+15% click-from-CPS per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('wizard').owned/10) * 0.15; } },
+        { id:'portal',    name:'Candy Portal',    icon:'🌀', baseCost:5.1e9,   baseCps:260000,owned:0, bonusDesc:'+6% CPS per 25 owned',
+          bonus:function() { return Math.floor(getBuilding('portal').owned/25) * 0.06; } },
+        { id:'time',      name:'Time Machine',    icon:'⏳', baseCost:7.5e10,  baseCps:1.6e6, owned:0, bonusDesc:'+25% offline earnings per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('time').owned/10) * 0.25; } },
+        { id:'antimatter',name:'Antimatter Candy',icon:'⚛️', baseCost:1e12,    baseCps:1e7,   owned:0, bonusDesc:'+8% CPS per 25 owned',
+          bonus:function() { return Math.floor(getBuilding('antimatter').owned/25) * 0.08; } },
+        { id:'prism',     name:'Sugar Prism',     icon:'💎', baseCost:1.4e13,  baseCps:6.5e7, owned:0, bonusDesc:'+50% golden candy power per 10 owned',
+          bonus:function() { return Math.floor(getBuilding('prism').owned/10) * 0.50; } },
+      ],
+      upgrades: [
+        { id:'click1', name:'Reinforced Fingers', desc:'+1 per click',   cost:100,    type:'click', value:1,   bought:false, req:function(){ return state.clicks>=10; } },
+        { id:'click2', name:'Steel Fingers',      desc:'+5 per click',   cost:5000,   type:'click', value:5,   bought:false, req:function(){ return state.clicks>=100; } },
+        { id:'click3', name:'Titanium Fingers',   desc:'+25 per click',  cost:250000, type:'click', value:25,  bought:false, req:function(){ return state.clicks>=500; } },
+        { id:'click4', name:'Diamond Fingers',    desc:'+100 per click', cost:5e7,    type:'click', value:100, bought:false, req:function(){ return state.clicks>=2000; } },
+        { id:'click5', name:'Cosmic Fingers',     desc:'+1,000 per click',cost:5e10,  type:'click', value:1000,bought:false, req:function(){ return state.clicks>=10000; } },
+        { id:'cursorU',   name:'Extra Hands',     desc:'Sugar Fingers x2', cost:1000, type:'building', target:'cursor', mult:2, bought:false, req:function(){ return getBuilding('cursor').owned>=1; } },
+        { id:'cursorU2',  name:'Helping Hands',   desc:'Sugar Fingers x3', cost:50000, type:'building', target:'cursor', mult:3, bought:false, req:function(){ return getBuilding('cursor').owned>=10; } },
+        { id:'grandmaU',  name:'Grandma Sweets',  desc:'Candy Grannies x2', cost:5000, type:'building', target:'grandma', mult:2, bought:false, req:function(){ return getBuilding('grandma').owned>=1; } },
+        { id:'grandmaU2', name:'Grandma Army',    desc:'Candy Grannies x3', cost:250000, type:'building', target:'grandma', mult:3, bought:false, req:function(){ return getBuilding('grandma').owned>=10; } },
+        { id:'farmU',     name:'Fertile Soil',    desc:'Sugar Farms x2', cost:55000, type:'building', target:'farm', mult:2, bought:false, req:function(){ return getBuilding('farm').owned>=1; } },
+        { id:'farmU2',    name:'Irrigation',      desc:'Sugar Farms x3', cost:2.75e6, type:'building', target:'farm', mult:3, bought:false, req:function(){ return getBuilding('farm').owned>=10; } },
+        { id:'mineU',     name:'Deep Veins',      desc:'Gumdrop Mines x2', cost:600000, type:'building', target:'mine', mult:2, bought:false, req:function(){ return getBuilding('mine').owned>=1; } },
+        { id:'mineU2',    name:'Deeper Veins',    desc:'Gumdrop Mines x3', cost:3e7, type:'building', target:'mine', mult:3, bought:false, req:function(){ return getBuilding('mine').owned>=10; } },
+        { id:'factoryU',  name:'Automation',      desc:'Candy Factories x2', cost:6.5e6, type:'building', target:'factory', mult:2, bought:false, req:function(){ return getBuilding('factory').owned>=1; } },
+        { id:'factoryU2', name:'Robotic Arms',    desc:'Candy Factories x3', cost:3.25e8, type:'building', target:'factory', mult:3, bought:false, req:function(){ return getBuilding('factory').owned>=10; } },
+        { id:'bankU',     name:'Interest Rates',  desc:'Sugar Banks x2', cost:7e7, type:'building', target:'bank', mult:2, bought:false, req:function(){ return getBuilding('bank').owned>=1; } },
+        { id:'templeU',   name:'Sacred Sugar',    desc:'Temples x2', cost:1e9, type:'building', target:'temple', mult:2, bought:false, req:function(){ return getBuilding('temple').owned>=1; } },
+        { id:'wizardU',   name:'Arcane Recipes',  desc:'Wizard Towers x2', cost:1.65e10, type:'building', target:'wizard', mult:2, bought:false, req:function(){ return getBuilding('wizard').owned>=1; } },
+        { id:'portalU',   name:'Stable Portals',  desc:'Candy Portals x2', cost:2.55e11, type:'building', target:'portal', mult:2, bought:false, req:function(){ return getBuilding('portal').owned>=1; } },
+        { id:'timeU',     name:'Paradox Engine',  desc:'Time Machines x2', cost:3.75e12, type:'building', target:'time', mult:2, bought:false, req:function(){ return getBuilding('time').owned>=1; } },
+        { id:'antiU',     name:'Matter Compressor',desc:'Antimatter Candy x2', cost:5e13, type:'building', target:'antimatter', mult:2, bought:false, req:function(){ return getBuilding('antimatter').owned>=1; } },
+        { id:'prismU',    name:'Refraction',      desc:'Sugar Prisms x2', cost:7e14, type:'building', target:'prism', mult:2, bought:false, req:function(){ return getBuilding('prism').owned>=1; } },
+        { id:'global1', name:'Sweet Aura',        desc:'+1% all CPS', cost:100000, type:'global', value:0.01, bought:false, req:function(){ return state.totalCandies>=5000; } },
+        { id:'global2', name:'Sugar Overload',    desc:'+5% all CPS', cost:1e7, type:'global', value:0.05, bought:false, req:function(){ return state.totalCandies>=1e6; } },
+        { id:'global3', name:'Candy Singularity', desc:'+10% all CPS', cost:1e9, type:'global', value:0.10, bought:false, req:function(){ return state.totalCandies>=1e8; } },
+        { id:'global4', name:'Sugarverse',        desc:'+25% all CPS', cost:1e11, type:'global', value:0.25, bought:false, req:function(){ return state.totalCandies>=1e10; } },
+        { id:'synergy1', name:'Click Sweetspot', desc:'Click gains +5% of your CPS', cost:500000, type:'special', effect:'clickFromCps', value:0.05, bought:false, req:function(){ return state.cps>=100; } },
+        { id:'synergy2', name:'Candy Magnet',   desc:'Golden candy spawns +50% more often', cost:2e6, type:'special', effect:'goldenRate', value:0.5, bought:false, req:function(){ return state.goldenClicks>=1; } },
+        { id:'synergy3', name:'Night Shift',    desc:'Earn 25% of CPS while away', cost:5e7, type:'special', effect:'offline', value:0.25, bought:false, req:function(){ return state.totalCandies>=1e6; } },
+        { id:'synergy4', name:'Sugar Rush',     desc:'Golden candies are 2x as strong', cost:5e8, type:'special', effect:'goldenPower', value:2, bought:false, req:function(){ return state.goldenClicks>=5; } },
+        { id:'synergy5', name:'Eternal Oven',   desc:'All CPS +10% and click +10%', cost:1e10, type:'special', effect:'both', value:0.10, bought:false, req:function(){ return state.totalCandies>=1e9; } },
+      ]
+    };
+
+    var $ = function (id) { return document.getElementById(id); };
+    var candyEl = $('candy'), countEl = $('candy-count'), cpsEl = $('cps');
+    var debugEl = $('debug-hint');
+    var clickValEl = $('click-value'), bonusEl = $('active-bonus');
+    var buildingsEl = $('buildings'), upgradesEl = $('upgrades'), statsEl = $('stats');
+    var newsEl = $('news'), leftEl = $('left'), buffBar = $('buffBar');
+    var toastEl = $('toast'), nameDisplay = $('player-name-display');
+    var settingsPanel = $('settings-panel'), hackPanel = $('hack-panel');
+    var hackToggle = $('hack-toggle');
+    var settingsToggle = $('settings-toggle');
+
+    function fmt(n) {
+      if (n < 1000) return Math.floor(n).toString();
+      var units = ['','K','M','B','T','Qa','Qi','Sx','Sp','Oc','No','Dc'];
+      var u = 0;
+      while (n >= 1000 && u < units.length - 1) { n /= 1000; u++; }
+      return n.toFixed(2).replace(/\.00$/,'') + units[u];
+    }
+    function getBuilding(id) {
+      for (var i = 0; i < state.building.length; i++) if (state.building[i].id === id) return state.building[i];
+      return null;
+    }
+    function buildingCost(b, count) {
+      count = count || 1;
+      var total = 0;
+      for (var i = 0; i < count; i++) total += Math.ceil(b.baseCost * Math.pow(1.15, b.owned + i));
+      return total;
+    }
+    function isUpgradeUnlocked(u) { try { return u.req ? u.req() : true; } catch (e) { return true; } }
+    var toastTimer = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+    }
+    function setDebug(msg) { debugEl.textContent = msg; }
+
+    function bonusFrom(sub) {
+      var sum = 0;
+      state.building.forEach(function (b) { if (b.owned > 0 && b.id.indexOf(sub) !== -1) sum += b.bonus(); });
+      return sum;
+    }
+    function clickBonusMultiplier() { return 1 + bonusFrom('cursor') + bonusFrom('mine'); }
+    function cpsBonusMultiplier() {
+      return 1 + bonusFrom('farm') + bonusFrom('factory') + bonusFrom('temple')
+               + bonusFrom('portal') + bonusFrom('antimatter');
+    }
+    function clickFromCpsPercent() {
+      var v = bonusFrom('wizard');
+      var u = state.upgrades.find(function(x){ return x.effect === 'clickFromCps'; });
+      if (u && u.bought) v += u.value;
+      return v;
+    }
+    function offlinePercent() {
+      var v = bonusFrom('bank') + bonusFrom('time');
+      var u = state.upgrades.find(function(x){ return x.effect === 'offline'; });
+      if (u && u.bought) v += u.value;
+      return v;
+    }
+    function goldenRateMultiplier() {
+      var v = 1 + bonusFrom('grandma');
+      var u = state.upgrades.find(function(x){ return x.effect === 'goldenRate'; });
+      if (u && u.bought) v += u.value;
+      return v;
+    }
+    function goldenPowerMultiplier() {
+      var v = 1 + bonusFrom('prism');
+      var u = state.upgrades.find(function(x){ return x.effect === 'goldenPower'; });
+      if (u && u.bought) v += u.value - 1;
+      return v;
+    }
+    function buildingMultiplier(bid) {
+      return state.upgrades
+        .filter(function (u) { return u.bought && u.type === 'building' && u.target === bid; })
+        .reduce(function (a, u) { return a * u.mult; }, 1);
+    }
+    function globalMultiplier() {
+      var m = 1;
+      state.upgrades.forEach(function (u) { if (u.bought && u.type === 'global') m += u.value; });
+      var both = state.upgrades.find(function (u) { return u.effect === 'both'; });
+      if (both && both.bought) m += both.value;
+      state.buffs.forEach(function (b) { m *= b.mult; });
+      m *= cpsBonusMultiplier();
+      return m;
+    }
+    function cpsPerBuilding(b) { return b.baseCps * buildingMultiplier(b.id) * globalMultiplier(); }
+    function recalcCps() {
+      var base = 0;
+      state.building.forEach(function (b) { base += b.owned * b.baseCps * buildingMultiplier(b.id); });
+      state.cps = base * globalMultiplier();
+    }
+    function currentClickGain() {
+      var gain = state.clickPower * clickBonusMultiplier() * globalMultiplier();
+      var both = state.upgrades.find(function (u) { return u.effect === 'both'; });
+      if (both && both.bought) gain *= (1 + both.value);
+      gain += state.cps * clickFromCpsPercent();
+      return Math.max(1, gain);
+    }
+
+    function buyBuilding(b, amount) {
+      amount = amount || 1;
+      var firstCost = buildingCost(b, 1);
+      if (!state.bypassPurchases && state.candies < firstCost) {
+        toast('Not enough candies for ' + b.name + ' (need ' + fmt(firstCost) + ')');
+        setDebug('Need ' + fmt(firstCost) + ' candies for ' + b.name + ' — you have ' + fmt(state.candies));
+        return false;
+      }
+      var n = amount;
+      if (!state.bypassPurchases) {
+        while (n > 1 && state.candies < buildingCost(b, n)) n--;
+        if (state.candies < buildingCost(b, n)) n = 1;
+      }
+      var cost = state.bypassPurchases ? 0 : buildingCost(b, n);
+      if (!state.bypassPurchases && state.candies < cost) return false;
+      state.candies -= cost;
+      b.owned += n;
+      recalcCps();
+      updateAll();
+      toast('Bought ' + n + '× ' + b.name + (state.bypassPurchases ? ' (FREE)' : ' for ' + fmt(cost)));
+      setDebug('✓ Bought ' + n + '× ' + b.name + ' — now ' + b.owned + ' owned');
+      return true;
+    }
+    function buyUpgrade(u) {
+      if (u.bought) { toast('Already purchased: ' + u.name); return false; }
+      if (!state.bypassPurchases && state.candies < u.cost) {
+        toast('Not enough candies (need ' + fmt(u.cost) + ')');
+        setDebug('Need ' + fmt(u.cost) + ' candies for ' + u.name);
+        return false;
+      }
+      if (!state.bypassPurchases && !isUpgradeUnlocked(u)) { toast('Upgrade locked'); return false; }
+      var cost = state.bypassPurchases ? 0 : u.cost;
+      state.candies -= cost;
+      u.bought = true;
+      if (u.type === 'click' && u.value) state.clickPower += u.value;
+      recalcCps();
+      rebuildUpgrades();
+      updateAll();
+      toast('Purchased: ' + u.name + (state.bypassPurchases ? ' (FREE)' : ''));
+      setDebug('✓ Purchased: ' + u.name);
+      return true;
+    }
+
+    var buildingEls = [];
+    function buildBuildingButtons() {
+      buildingsEl.innerHTML = '';
+      buildingEls = [];
+      state.building.forEach(function (b, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'item';
+        btn.innerHTML =
+          '<div class="icon">' + b.icon + '</div>' +
+          '<div class="info">' +
+            '<div class="name">' + b.name + ' <span class="owned">×0</span></div>' +
+            '<div class="cost"></div>' +
+            '<div class="cps-each"></div>' +
+            '<div class="bonus"></div>' +
+          '</div>';
+        btn.onclick = (function (index) {
+          return function (ev) {
+            var amount = (ev.ctrlKey || ev.metaKey) ? 100 : (ev.shiftKey ? 10 : 1);
+            buyBuilding(state.building[index], amount);
+          };
+        })(idx);
+        buildingsEl.appendChild(btn);
+        buildingEls.push({
+          btn: btn,
+          ownedSpan: btn.querySelector('.owned'),
+          costDiv: btn.querySelector('.cost'),
+          cpsDiv: btn.querySelector('.cps-each'),
+          bonusDiv: btn.querySelector('.bonus'),
+          building: b
+        });
+      });
+    }
+    function updateBuildingButtons() {
+      buildingEls.forEach(function (e) {
+        var b = e.building;
+        var cost = buildingCost(b, 1);
+        var cost10 = buildingCost(b, 10);
+        var affordable = state.bypassPurchases || state.candies >= cost;
+        e.btn.classList.toggle('affordable', affordable);
+        e.ownedSpan.textContent = '×' + b.owned;
+        e.costDiv.textContent = '🍬 ' + (state.bypassPurchases ? 'FREE' : fmt(cost)) +
+          (b.owned > 0 && !state.bypassPurchases ? ' · ×10 ' + fmt(cost10) : '');
+        e.cpsDiv.textContent = '+' + fmt(cpsPerBuilding(b)) + '/s each · total ' +
+          fmt(b.owned * cpsPerBuilding(b)) + '/s';
+        var bonusVal = b.bonus ? b.bonus() : 0;
+        e.bonusDiv.textContent = '🎁 ' + ((b.owned > 0 && bonusVal > 0)
+          ? 'Active bonus: +' + (bonusVal*100).toFixed(1) + '%'
+          : b.bonusDesc);
+      });
+    }
+
+    function rebuildUpgrades() {
+      upgradesEl.innerHTML = '';
+      var available = [];
+      state.upgrades.forEach(function (u, i) {
+        if (!u.bought && (state.bypassPurchases || isUpgradeUnlocked(u))) available.push({ u: u, i: i });
+      });
+      if (available.length === 0) {
+        upgradesEl.innerHTML = '<div style="grid-column: 1/-1; font-size:13px;color:var(--sub);font-style:italic;padding:14px;text-align:center;">No upgrades available yet — keep clicking!</div>';
+        return;
+      }
+      available.forEach(function (item) {
+        var u = item.u, i = item.i;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'upgrade';
+        btn.innerHTML = '<strong>' + u.name + '</strong><span class="effect">' + u.desc + '</span><br><span class="ucost"></span>';
+        btn.onclick = (function (index) {
+          return function () { buyUpgrade(state.upgrades[index]); };
+        })(i);
+        btn._upgrade = u;
+        upgradesEl.appendChild(btn);
+      });
+      updateUpgradeCosts();
+    }
+    function updateUpgradeCosts() {
+      var btns = upgradesEl.querySelectorAll('.upgrade');
+      for (var i = 0; i < btns.length; i++) {
+        var u = btns[i]._upgrade;
+        if (!u) continue;
+        var canAfford = state.bypassPurchases || state.candies >= u.cost;
+        btns[i].classList.toggle('locked', !canAfford);
+        var c = btns[i].querySelector('.ucost');
+        if (c) c.textContent = '🍬 ' + (state.bypassPurchases ? 'FREE' : fmt(u.cost));
+      }
+    }
+
+    candyEl.addEventListener('click', function (e) {
+      var gain = currentClickGain();
+      state.candies += gain;
+      state.totalCandies += gain;
+      state.clicks++;
+      candyEl.classList.add('bounce');
+      setTimeout(function () { candyEl.classList.remove('bounce'); }, 300);
+      spawnFloat(e.clientX, e.clientY, '+' + fmt(gain));
+      setDebug('+' + fmt(gain) + ' candy · total ' + fmt(state.candies) + ' · clicks ' + state.clicks);
+      updateAll();
+    });
+
+    function spawnFloat(x, y, text) {
+      var f = document.createElement('div');
+      f.className = 'float';
+      f.textContent = text;
+      var rect = leftEl.getBoundingClientRect();
+      f.style.left = (x - rect.left) + 'px';
+      f.style.top  = (y - rect.top) + 'px';
+      leftEl.appendChild(f);
+      setTimeout(function () { f.remove(); }, 1100);
+    }
+
+    function updateAll() {
+      countEl.textContent = fmt(state.candies) + ' candies';
+      cpsEl.textContent = 'per second: ' + fmt(state.cps);
+      nameDisplay.textContent = state.playerName;
+
+      var cg = currentClickGain();
+      clickValEl.innerHTML = '+<strong>' + fmt(cg) + '</strong> per click';
+
+      var lines = [];
+      if (clickFromCpsPercent() > 0) lines.push('Click gains +' + (clickFromCpsPercent()*100).toFixed(0) + '% of CPS');
+      if (offlinePercent() > 0)      lines.push('Offline earnings: ' + (offlinePercent()*100).toFixed(0) + '%');
+      if (state.bypassPurchases)     lines.push('⚠️ FREE PURCHASES ACTIVE');
+      bonusEl.textContent = lines.join(' · ');
+
+      updateBuildingButtons();
+      updateUpgradeCosts();
+
+      var elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+      statsEl.innerHTML =
+        '<div><span>Player</span><strong>' + state.playerName + '</strong></div>' +
+        '<div><span>Total made</span><strong>' + fmt(state.totalCandies) + '</strong></div>' +
+        '<div><span>Hand-made</span><strong>' + fmt(state.clicks * cg) + '</strong></div>' +
+        '<div><span>Clicks</span><strong>' + state.clicks + '</strong></div>' +
+        '<div><span>Click power</span><strong>+' + fmt(cg) + '</strong></div>' +
+        '<div><span>CPS</span><strong>' + fmt(state.cps) + '</strong></div>' +
+        '<div><span>Global mult</span><strong>×' + globalMultiplier().toFixed(2) + '</strong></div>' +
+        '<div><span>Golden chance</span><strong>×' + goldenRateMultiplier().toFixed(2) + '</strong></div>' +
+        '<div><span>Golden power</span><strong>×' + goldenPowerMultiplier().toFixed(2) + '</strong></div>' +
+        '<div><span>Offline</span><strong>' + (offlinePercent()*100).toFixed(0) + '%</strong></div>' +
+        '<div><span>Golden candies</span><strong>' + state.goldenClicks + '</strong></div>' +
+        '<div><span>Time played</span><strong>' + Math.floor(elapsed/60) + 'm ' + (elapsed%60) + 's</strong></div>';
+
+      buffBar.innerHTML = '';
+      state.buffs.forEach(function (b) {
+        var secs = Math.max(0, Math.ceil((b.endsAt - Date.now()) / 1000));
+        var el = document.createElement('div');
+        el.className = 'buff';
+        el.textContent = '🔥 ' + b.label + ' ×' + b.mult + ' · ' + secs + 's';
+        buffBar.appendChild(el);
+      });
+    }
+
+    var last = performance.now();
+    function loop(now) {
+      var dt = (now - last) / 1000;
+      last = now;
+      if (dt > 0.5) dt = 0.5;
+
+      var t = Date.now();
+      var beforeLen = state.buffs.length;
+      state.buffs = state.buffs.filter(function (b) { return b.endsAt > t; });
+      if (state.buffs.length !== beforeLen) recalcCps();
+
+      var gain = state.cps * dt;
+      state.candies += gain;
+      state.totalCandies += gain;
+
+      updateAll();
+      requestAnimationFrame(loop);
+    }
+
+    var GOLDEN_FIRST_DELAY = 90000;
+    var GOLDEN_INTERVAL    = 240000;
+    var GOLDEN_LIFETIME    = 4000;
+
+    function spawnGolden() {
+      var g = document.createElement('div');
+      g.id = 'golden';
+      g.textContent = '🍭';
+      var maxX = Math.max(50, window.innerWidth - 80);
+      var maxY = Math.max(50, window.innerHeight - 80);
+      g.style.left = Math.floor(Math.random() * maxX) + 'px';
+      g.style.top  = Math.floor(Math.random() * maxY) + 'px';
+      g.addEventListener('click', function () {
+        state.goldenClicks++;
+        var power = goldenPowerMultiplier();
+        var roll = Math.random();
+        if (roll < 0.40) {
+          var bonus = Math.max(13, state.cps * 60) * power;
+          state.candies += bonus; state.totalCandies += bonus;
+          flashNews('🍭 Lucky! +' + fmt(bonus) + ' candies');
+          toast('Lucky! +' + fmt(bonus) + ' candies');
+        } else if (roll < 0.80) {
+          state.buffs.push({ id:'frenzy', mult:7, endsAt: Date.now() + 30000, label:'Frenzy' });
+          recalcCps();
+          flashNews('🔥 Frenzy! x7 CPS for 30 seconds!');
+          toast('🔥 FRENZY! ×7 CPS for 30s');
+        } else {
+          var bonus2 = Math.max(50, state.cps * 300) * power;
+          state.candies += bonus2; state.totalCandies += bonus2;
+          flashNews('🌟 Dragonflight! +' + fmt(bonus2) + ' candies');
+          toast('🌟 Dragonflight! +' + fmt(bonus2));
+        }
+        g.remove();
+        updateAll();
+      });
+      document.body.appendChild(g);
+      setTimeout(function () { if (g.parentNode) g.remove(); }, GOLDEN_LIFETIME);
+    }
+    setTimeout(spawnGolden, GOLDEN_FIRST_DELAY);
+    setInterval(spawnGolden, GOLDEN_INTERVAL);
+
+    var newsLines = [
+      'Breaking: local child discovers infinite candy glitch, dentists rejoice.',
+      'Sugar prices soar as Candy Clicker economy booms.',
+      'Scientists confirm: candy tastes better when clicked.',
+      'Grandma union demands shorter baking hours.',
+      'Candy Factory reports record profits, workers paid in gumdrops.',
+      'Wizard Tower accidentally turns intern into a lollipop.',
+      'Time Machine operator goes back to prevent sugar crash. Fails.',
+      'Antimatter candy: safe? Or just very, very sweet?',
+      'Golden candy spotted! Click it before it vanishes!',
+      'Local man achieves candy singularity, becomes pure sugar.',
+      'This candy clicker was made by Ryan.',
+      'Rumour: someone named candyhacker3000 is breaking the game...'
+    ];
+    function flashNews(text) { newsEl.textContent = text; }
+    setInterval(function () {
+      newsEl.textContent = newsLines[Math.floor(Math.random() * newsLines.length)];
+    }, 8000);
+
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      var btns = document.querySelectorAll('.theme-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.toggle('active', btns[i].dataset.theme === theme);
+      }
+      try { storage.setItem('candyClicker_theme', theme); } catch (e) {}
+    }
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    for (var ti = 0; ti < themeBtns.length; ti++) {
+      (function (btn) {
+        btn.onclick = function () {
+          applyTheme(btn.dataset.theme);
+          toast('Theme: ' + btn.dataset.theme);
+        };
+      })(themeBtns[ti]);
+    }
+
+    function openSettings() {
+      settingsPanel.classList.add('open');
+      settingsToggle.classList.add('hidden-while-open');
+      closeHack();
+    }
+    function closeSettings() {
+      settingsPanel.classList.remove('open');
+      settingsToggle.classList.remove('hidden-while-open');
+    }
+    function openHack() {
+      hackPanel.classList.add('open');
+      hackToggle.classList.add('hidden-while-open');
+      closeSettings();
+    }
+    function closeHack() {
+      hackPanel.classList.remove('open');
+      hackToggle.classList.remove('hidden-while-open');
+    }
+
+    settingsToggle.onclick = openSettings;
+    $('settings-close').onclick  = closeSettings;
+    $('settings-close-bottom').onclick = closeSettings;
+    $('hack-close').onclick      = closeHack;
+    hackToggle.onclick           = openHack;
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeSettings(); closeHack(); }
+    });
+
+    function setName(newName) {
+      newName = (newName || '').trim() || 'Player';
+      state.playerName = newName.slice(0, 24);
+      nameDisplay.textContent = state.playerName;
+      if (state.playerName.toLowerCase() === 'candyhacker3000') {
+        hackToggle.classList.add('show');
+        toast('💀 HACK MENU UNLOCKED 💀');
+      } else {
+        hackToggle.classList.remove('show');
+        closeHack();
+        toast('Name set to: ' + state.playerName);
+      }
+      saveGame();
+    }
+    $('name-save').onclick = function () { setName($('name-input').value); };
+    $('name-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') setName($('name-input').value);
+    });
+
+    function hackStatus(msg) { $('hack-status').textContent = '> ' + msg; }
+    $('hack-add-btn').onclick    = function () { var n = parseFloat($('hack-amount').value) || 0; state.candies += n; state.totalCandies += n; hackStatus('Added ' + fmt(n)); updateAll(); };
+    $('hack-set-btn').onclick    = function () { var n = parseFloat($('hack-amount').value) || 0; state.candies = n; hackStatus('Set to ' + fmt(n)); updateAll(); };
+    $('hack-quad-btn').onclick   = function () { state.candies += 1e15; state.totalCandies += 1e15; hackStatus('+1Qa'); updateAll(); };
+    $('hack-b10').onclick        = function () { state.building.forEach(function (b) { b.owned = 10; }); recalcCps(); hackStatus('10 of each'); updateAll(); };
+    $('hack-b100').onclick       = function () { state.building.forEach(function (b) { b.owned = 100; }); recalcCps(); hackStatus('100 of each'); updateAll(); };
+    $('hack-b1000').onclick      = function () { state.building.forEach(function (b) { b.owned = 1000; }); recalcCps(); hackStatus('1000 of each'); updateAll(); };
+    $('hack-b0').onclick         = function () { state.building.forEach(function (b) { b.owned = 0; }); recalcCps(); hackStatus('Removed all'); updateAll(); };
+    $('hack-up-all').onclick     = function () { state.upgrades.forEach(function (u) { if (!u.bought) { u.bought = true; if (u.type === 'click' && u.value) state.clickPower += u.value; } }); recalcCps(); rebuildUpgrades(); hackStatus('All upgrades unlocked'); updateAll(); };
+    $('hack-up-reset').onclick   = function () { state.upgrades.forEach(function (u) { u.bought = false; }); state.clickPower = 1; recalcCps(); rebuildUpgrades(); hackStatus('Upgrades reset'); updateAll(); };
+    $('hack-frenzy').onclick     = function () { state.buffs.push({ id:'frenzy', mult:7, endsAt: Date.now() + 30000, label:'Frenzy' }); recalcCps(); hackStatus('Frenzy!'); updateAll(); };
+    $('hack-cp1k').onclick       = function () { state.clickPower += 1000; hackStatus('+1000 click'); updateAll(); };
+    $('hack-cp1m').onclick       = function () { state.clickPower += 1000000; hackStatus('+1M click'); updateAll(); };
+    $('hack-rain').onclick       = function () { for (var i = 0; i < 10; i++) setTimeout(spawnGolden, i * 200); hackStatus('Golden rain!'); };
+    $('hack-bypass-btn').onclick = function () {
+      state.bypassPurchases = !state.bypassPurchases;
+      var b = $('hack-bypass-btn');
+      b.textContent = 'Toggle Free Purchases: ' + (state.bypassPurchases ? 'ON' : 'OFF');
+      hackStatus('Free purchases: ' + (state.bypassPurchases ? 'ON' : 'OFF'));
+      rebuildUpgrades();
+      updateAll();
+    };
+    $('hack-wipe').onclick = function () {
+      if (!confirm('Wipe all progress (no reload)?')) return;
+      state.candies = 0; state.totalCandies = 0; state.clicks = 0;
+      state.clickPower = 1; state.goldenClicks = 0; state.buffs = [];
+      state.building.forEach(function (b) { b.owned = 0; });
+      state.upgrades.forEach(function (u) { u.bought = false; });
+      recalcCps(); rebuildUpgrades(); updateAll(); hackStatus('Wiped.');
+    };
+
+    $('save-now').onclick = function () { saveGame(); toast('Game saved!'); };
+    $('reset-all').onclick = function () {
+      if (!confirm('Reset EVERYTHING? This wipes all candy, buildings, upgrades, name and settings.')) return;
+      if (!confirm('Are you REALLY sure? Last chance!')) return;
+      try {
+        storage.removeItem(SAVE_VERSION);
+        storage.removeItem('candyClicker_theme');
+        storage.removeItem(LAST_SEEN);
+      } catch (e) {}
+      toast('Resetting...');
+      setTimeout(function () { location.reload(); }, 600);
+    };
+
+    function saveGame() {
+      try {
+        var data = {
+          candies: state.candies, totalCandies: state.totalCandies,
+          clicks: state.clicks, clickPower: state.clickPower,
+          goldenClicks: state.goldenClicks, startTime: state.startTime,
+          playerName: state.playerName,
+          buildings: state.building.map(function (b) { return b.owned; }),
+          upgrades: state.upgrades.map(function (u) { return u.bought; }),
+          buffs: state.buffs
+        };
+        storage.setItem(SAVE_VERSION, JSON.stringify(data));
+      } catch (e) {}
+    }
+    setInterval(saveGame, 10000);
+    window.addEventListener('beforeunload', saveGame);
+
+    (function loadGame() {
+      try {
+        var theme = storage.getItem('candyClicker_theme');
+        if (theme) applyTheme(theme);
+      } catch (e) {}
+
+      var raw = storage.getItem(SAVE_VERSION);
+      if (!raw) return;
+      try {
+        var d = JSON.parse(raw);
+        state.candies      = d.candies      || 0;
+        state.totalCandies = d.totalCandies || 0;
+        state.clicks       = d.clicks       || 0;
+        state.clickPower   = d.clickPower   || 1;
+        state.goldenClicks = d.goldenClicks || 0;
+        state.startTime    = d.startTime    || Date.now();
+        state.playerName   = d.playerName   || 'Player';
+        $('name-input').value = state.playerName;
+        if (d.buildings) d.buildings.forEach(function (o, i) { if (state.building[i]) state.building[i].owned = o; });
+        if (d.upgrades)  d.upgrades.forEach(function (b, i)  { if (state.upgrades[i])  state.upgrades[i].bought = b; });
+        if (d.buffs)     state.buffs = d.buffs.filter(function (b) { return b.endsAt > Date.now(); });
+        if (state.playerName.toLowerCase() === 'candyhacker3000') hackToggle.classList.add('show');
+      } catch (e) {}
+    })();
+
+    recalcCps();
+    buildBuildingButtons();
+    rebuildUpgrades();
+    updateAll();
+    requestAnimationFrame(loop);
+    console.log('Candy Clicker v16 ready.');
+    setDebug('Ready — click the candy. You start with 0 candies.');
+    setBanner('✓ Candy Clicker v16 loaded');
+
+  } catch (err) {
+    console.error('Candy Clicker crashed:', err);
+    setBanner('✗ ERROR: ' + err.message, true);
+    var dbg = document.getElementById('debug-hint');
+    if (dbg) dbg.textContent = 'Script error: ' + err.message + ' — see F12 console.';
+  }
+})();
+</script>
+</body>
+</html>
